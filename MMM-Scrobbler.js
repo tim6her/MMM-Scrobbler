@@ -44,8 +44,9 @@ Module.register("MMM-Scrobbler",{
 			var html = "<div class='player bright scrobbler-"+this.config.alignment+"'>";
 			var albumart_html = '';
 			var meta_html = '';
+      var randomId = new Date().getTime());
 			if(this.config.showAlbumArt){
-				albumart_html += "<div class='album-art-container'><div class='album-art'><img src='http://salonmaster:9000/music/current/cover.jpg?player=b8:27:eb:6b:17:38' width='200'></div></div>";
+				albumart_html += "<div class='album-art-container'><div class='album-art'><img src='http://salonmaster:9000/music/current/cover.jpg?player=b8:27:eb:6b:17:38?random=" + randomId + "' width='200'></div></div>";
 			}
 			if(this.config.showMetaData){
 				meta_html += "<div class='meta'><table class='small'><tr class='track-name bright'><td>"+this.songData.title+"</td></tr><tr class='artist-name'><td>"+this.songData.artist +"</td></tr><tr class='album-name dimmed'><td>"+this.songData.album+"</td></tr></table></div>";
