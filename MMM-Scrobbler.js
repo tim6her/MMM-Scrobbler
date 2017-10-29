@@ -45,7 +45,7 @@ Module.register("MMM-Scrobbler",{
 			var albumart_html = '';
 			var meta_html = '';
 			if(this.config.showAlbumArt){
-				albumart_html += "<div class='album-art-container'><div class='album-art'><img src='"+ this.songData.image +"' width='200'></div></div>";
+				albumart_html += "<div class='album-art-container'><div class='album-art'><img src='http://salonmaster:9000/music/current/cover.jpg?player=b8:27:eb:6b:17:38' width='200'></div></div>";
 			}
 			if(this.config.showMetaData){
 				meta_html += "<div class='meta'><table class='small'><tr class='track-name bright'><td>"+this.songData.title+"</td></tr><tr class='artist-name'><td>"+this.songData.artist +"</td></tr><tr class='album-name dimmed'><td>"+this.songData.album+"</td></tr></table></div>";
@@ -56,7 +56,7 @@ Module.register("MMM-Scrobbler",{
 			}
 			else{
 				html += albumart_html;
-				html += meta_html;		
+				html += meta_html;
 			}
 			html += "</div>";
 			wrapper.innerHTML = html;
@@ -75,7 +75,7 @@ Module.register("MMM-Scrobbler",{
     },
 	queryLastFm: function(){
 		var url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user="+this.config.username+"&api_key="+this.config.apikey+"&limit=1&format=json";
-		var self = this;		
+		var self = this;
 		var i = new XMLHttpRequest;
 		i.open("GET",url,true),i.onload=function(){
 			var r=JSON.parse(i.responseText);
@@ -92,14 +92,14 @@ Module.register("MMM-Scrobbler",{
 			},
 			i.onerror=function(){Log.error("Something went wrong")};
 		i.send();
-	},	
+	},
 	scheduleUpdate: function(delay) {
 		var nextLoad = this.delay;
 		if (typeof delay !== "undefined" && delay >= 0) {
 			nextLoad = delay;
 		}
 		//set update timeout
-		var self = this;		
+		var self = this;
 		setTimeout(function() {
 			self.queryLastFm();
 		}, nextLoad);
